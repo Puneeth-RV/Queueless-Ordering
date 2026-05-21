@@ -8,8 +8,9 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Set default axios base URL
-  axios.defaults.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+  // In production both are on same server so use relative path ('')
+  // In development, VITE_API_URL is set to http://localhost:5001 via .env
+  axios.defaults.baseURL = import.meta.env.VITE_API_URL ?? '';
 
   useEffect(() => {
     const userInfo = localStorage.getItem('userInfo');
